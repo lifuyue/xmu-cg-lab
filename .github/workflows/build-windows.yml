@@ -1,0 +1,51 @@
+name: Build Windows Executable
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    defaults:
+      run:
+        shell: msys2 {0}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: true
+          install: >-
+            mingw-w64-ucrt-x86_64-gcc
+            mingw-w64-ucrt-x86_64-freeglut
+
+      - name: Build main.exe
+        run: |
+          mkdir -p build dist
+          g++ -std=c++11 -O2 -o build/main.exe LAB1/main.cpp -lfreeglut -lopengl32 -lglu32
+          cp build/main.exe dist/
+
+      - name: Bundle runtime DLLs
+        run: |
+          ldd build/main.exe | awk '/\/ucrt64\/bin\/.*\.dll/ { print $3 }' | sort -u > build/dll-list.txt
+          while IFS= read -r dll; do
+            cp "$dll" dist/
+          done < build/dll-list.txt
+          ls -la dist
+
+      - name: Upload Windows artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-main
+          path: dist/
+          retention-days: 7

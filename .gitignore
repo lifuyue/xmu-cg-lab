@@ -1,0 +1,14 @@
+# macOS / local executable
+main
+LAB1/main
+
+# Windows build outputs
+*.exe
+*.dll
+
+# Common build directories
+build/
+dist/
+
+# macOS metadata
+.DS_Store
