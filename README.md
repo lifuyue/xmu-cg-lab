@@ -7,7 +7,7 @@
 
 - 文件：`.github/workflows/build-windows.yml`
 - 功能：在 GitHub 的 `windows-latest` 运行器上编译 `main.cpp`
-- 产物：`main.exe` 和运行所需的 DLL，会作为 `windows-main` artifact 上传
+- 产物：尽量生成单文件 `main.exe`，并作为 `windows-main` artifact 上传
 
 使用方法：
 

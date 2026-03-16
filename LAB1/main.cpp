@@ -1,3 +1,7 @@
+#if defined(_WIN32)
+#define FREEGLUT_STATIC
+#endif
+
 #if defined(__has_include)
 #if __has_include(<GL/freeglut.h>)
 #include <GL/freeglut.h>

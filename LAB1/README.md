@@ -42,6 +42,8 @@ clang++ -std=c++11 main.cpp -framework OpenGL -framework GLUT -o main
 2. 解压压缩包
 3. 双击 `main.exe` 运行
 
+当前 workflow 目标是生成单文件 `main.exe`，不再额外附带 `freeglut.dll`。
+
 ## 演示内容对应关系
 
 - 图形对象：通过 `1` 和 `2` 切换正方形、圆形

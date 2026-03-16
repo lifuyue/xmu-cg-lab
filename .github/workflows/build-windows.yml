@@ -32,15 +32,10 @@ jobs:
       - name: Build main.exe
         run: |
           mkdir -p build dist
-          g++ -std=c++11 -O2 -o build/main.exe LAB1/main.cpp -lfreeglut -lopengl32 -lglu32
+          g++ -std=c++11 -O2 -DFREEGLUT_STATIC -static-libstdc++ -static-libgcc \
+            -o build/main.exe LAB1/main.cpp /ucrt64/lib/libfreeglut.a \
+            -lopengl32 -lglu32 -lgdi32 -lwinmm
           cp build/main.exe dist/
-
-      - name: Bundle runtime DLLs
-        run: |
-          ldd build/main.exe | awk '/\/ucrt64\/bin\/.*\.dll/ { print $3 }' | sort -u > build/dll-list.txt
-          while IFS= read -r dll; do
-            cp "$dll" dist/
-          done < build/dll-list.txt
           ls -la dist
 
       - name: Upload Windows artifact
