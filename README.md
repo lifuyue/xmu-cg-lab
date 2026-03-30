@@ -1,9 +1,17 @@
 # xmu-cg-lab
 你🦐的计算机图形学实验
 
+## 当前目录说明
+
+- `LAB0/`：旧版实验内容归档
+- `LAB1/`：新版实验目录
+- `LAB1/1/`：Task1 运行提供的示例程序
+- `LAB1/2/`：预留
+- `LAB1/3/`：预留
+
 ## GitHub Actions 生成 Windows 可执行文件
 
-仓库包含一个 GitHub Actions 工作流：
+仓库包含一个 GitHub Actions 工作流，用于编译 `LAB1/1/main.cpp`：
 
 - 文件：`.github/workflows/build-windows.yml`
 - 功能：在 GitHub 的 `windows-latest` 运行器上编译 `main.cpp`
