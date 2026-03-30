@@ -29,18 +29,30 @@ jobs:
             mingw-w64-ucrt-x86_64-gcc
             mingw-w64-ucrt-x86_64-freeglut
 
-      - name: Build main.exe
+      - name: Build Windows executables
         run: |
           mkdir -p build dist
+
           g++ -std=c++11 -O2 -DFREEGLUT_STATIC -static-libstdc++ -static-libgcc \
-            -o build/main.exe LAB1/1/main.cpp /ucrt64/lib/libfreeglut.a \
+            -o build/task1.exe LAB1/1/main.cpp /ucrt64/lib/libfreeglut.a \
             -lopengl32 -lglu32 -lgdi32 -lwinmm
-          cp build/main.exe dist/
+
+          g++ -std=c++11 -O2 -DFREEGLUT_STATIC -static-libstdc++ -static-libgcc \
+            -o build/task2.exe LAB1/2/main.cpp /ucrt64/lib/libfreeglut.a \
+            -lopengl32 -lglu32 -lgdi32 -lwinmm
+
+          g++ -std=c++11 -O2 -DFREEGLUT_STATIC -static-libstdc++ -static-libgcc \
+            -o build/task3.exe LAB1/3/main.cpp /ucrt64/lib/libfreeglut.a \
+            -lopengl32 -lglu32 -lgdi32 -lwinmm
+
+          cp build/task1.exe dist/
+          cp build/task2.exe dist/
+          cp build/task3.exe dist/
           ls -la dist
 
       - name: Upload Windows artifact
         uses: actions/upload-artifact@v4
         with:
-          name: windows-main
+          name: windows-executables
           path: dist/
           retention-days: 7
