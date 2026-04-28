@@ -34,25 +34,31 @@ jobs:
           mkdir -p build dist
 
           g++ -std=c++11 -O2 -DFREEGLUT_STATIC -static-libstdc++ -static-libgcc \
-            -o build/task1.exe LAB1/1/main.cpp /ucrt64/lib/libfreeglut.a \
+            -o build/exp3_3d_model.exe LAB3/exp3_3d_model.cpp /ucrt64/lib/libfreeglut.a \
             -lopengl32 -lglu32 -lgdi32 -lwinmm
 
-          g++ -std=c++11 -O2 -DFREEGLUT_STATIC -static-libstdc++ -static-libgcc \
-            -o build/task2.exe LAB1/2/main.cpp /ucrt64/lib/libfreeglut.a \
-            -lopengl32 -lglu32 -lgdi32 -lwinmm
+          mkdir -p "dist/22920242203267_李富悦"
+          cp build/exp3_3d_model.exe "dist/22920242203267_李富悦/"
+          cp LAB3/exp3_3d_model.cpp "dist/22920242203267_李富悦/"
+          cp LAB3/lizhenxiout.ply "dist/22920242203267_李富悦/"
+          cp output/doc/实验3_三维模型显示_实验报告_李富悦.docx "dist/22920242203267_李富悦/"
+          cp output/doc/实验3_三维模型显示_实验报告_李富悦.pdf "dist/22920242203267_李富悦/"
+          cat > "dist/22920242203267_李富悦/README.txt" <<'EOF'
+          计算机图形学实验3：三维模型显示
+          姓名：李富悦
+          学号：22920242203267
 
-          g++ -std=c++11 -O2 -DFREEGLUT_STATIC -static-libstdc++ -static-libgcc \
-            -o build/task3.exe LAB1/3/main.cpp /ucrt64/lib/libfreeglut.a \
-            -lopengl32 -lglu32 -lgdi32 -lwinmm
-
-          cp build/task1.exe dist/
-          cp build/task2.exe dist/
-          cp build/task3.exe dist/
+          运行方式：
+          1. 保持 exp3_3d_model.exe 和 lizhenxiout.ply 在同一目录。
+          2. 双击 exp3_3d_model.exe 运行。
+          3. 按 1 显示纯色 PLY 小人，按 2 显示光照小人与旋转光源，按 3 显示旋转立方体明暗计算。
+          4. b/n/m 切换材质，o/p 切换白色光/彩色光，鼠标拖动左下角滑动条调整光照和材质参数。
+          EOF
           ls -la dist
 
       - name: Upload Windows artifact
         uses: actions/upload-artifact@v4
         with:
-          name: windows-executables
+          name: exp3-windows-submission
           path: dist/
           retention-days: 7
