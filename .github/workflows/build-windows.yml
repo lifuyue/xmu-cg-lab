@@ -28,6 +28,7 @@ jobs:
           install: >-
             mingw-w64-ucrt-x86_64-gcc
             mingw-w64-ucrt-x86_64-freeglut
+            mingw-w64-ucrt-x86_64-eigen3
 
       - name: Build Windows executables
         run: |
@@ -45,9 +46,27 @@ jobs:
             -o build/task3.exe LAB1/3/main.cpp /ucrt64/lib/libfreeglut.a \
             -lopengl32 -lglu32 -lgdi32 -lwinmm
 
+          g++ -std=c++17 -O2 -DFREEGLUT_STATIC -static-libstdc++ -static-libgcc \
+            -I/ucrt64/include/eigen3 \
+            -o build/task1_6.exe LAB4/exp4_task1_6.cpp /ucrt64/lib/libfreeglut.a \
+            -lopengl32 -lglu32 -lgdi32 -lwinmm
+
+          g++ -std=c++17 -O2 -DFREEGLUT_STATIC -static-libstdc++ -static-libgcc \
+            -I/ucrt64/include/eigen3 \
+            -o build/task1_7.exe LAB4/exp4_task1_7.cpp /ucrt64/lib/libfreeglut.a \
+            -lopengl32 -lglu32 -lgdi32 -lwinmm
+
+          g++ -std=c++17 -O2 -DFREEGLUT_STATIC -static-libstdc++ -static-libgcc \
+            -I/ucrt64/include/eigen3 \
+            -o build/task1_8.exe LAB4/exp4_task1_8.cpp /ucrt64/lib/libfreeglut.a \
+            -lopengl32 -lglu32 -lgdi32 -lwinmm
+
           cp build/task1.exe dist/
           cp build/task2.exe dist/
           cp build/task3.exe dist/
+          cp build/task1_6.exe dist/
+          cp build/task1_7.exe dist/
+          cp build/task1_8.exe dist/
           ls -la dist
 
       - name: Upload Windows artifact
