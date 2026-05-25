@@ -1,6 +1,7 @@
 # macOS / local executable
 main
 LAB1/main
+LAB6/exp6_raytracing
 
 # Windows build outputs
 *.exe
@@ -9,6 +10,8 @@ LAB1/main
 # Common build directories
 build/
 dist/
+LAB6/report_render/
+LAB6/output.png
 
 # macOS metadata
 .DS_Store

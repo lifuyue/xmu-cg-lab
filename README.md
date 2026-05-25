@@ -8,6 +8,7 @@
 - `LAB1/1/`：Task1 运行提供的示例程序
 - `LAB1/2/`：预留
 - `LAB1/3/`：预留
+- `LAB6/`：实验 6 Ray Tracing 光线跟踪，实现光线生成、阴影、镜面反射和折射
 
 ## GitHub Actions 生成 Windows 可执行文件
 
@@ -15,7 +16,7 @@
 
 - 文件：`.github/workflows/build-windows.yml`
 - 功能：在 GitHub 的 `windows-latest` 运行器上编译 `main.cpp`
-- 产物：尽量生成单文件 `main.exe`，并作为 `windows-main` artifact 上传
+- 产物：生成实验 1、实验 4、实验 6 的 Windows `.exe`，并上传为 `windows-executables` artifact；实验 6 同时运行程序生成 `exp6_output.ppm`
 
 使用方法：
 

@@ -61,12 +61,20 @@ jobs:
             -o build/task1_8.exe LAB4/exp4_task1_8.cpp /ucrt64/lib/libfreeglut.a \
             -lopengl32 -lglu32 -lgdi32 -lwinmm
 
+          g++ -std=c++17 -O2 -static -static-libstdc++ -static-libgcc \
+            -I/ucrt64/include/eigen3 \
+            -o build/exp6_raytracing.exe LAB6/src/exp6.cpp
+
+          (cd build && ./exp6_raytracing.exe)
+
           cp build/task1.exe dist/
           cp build/task2.exe dist/
           cp build/task3.exe dist/
           cp build/task1_6.exe dist/
           cp build/task1_7.exe dist/
           cp build/task1_8.exe dist/
+          cp build/exp6_raytracing.exe dist/
+          cp build/output.ppm dist/exp6_output.ppm
           ls -la dist
 
       - name: Upload Windows artifact
